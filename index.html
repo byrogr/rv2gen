@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>reCAPTCHA v2 Test</title>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #tokenContainer {
+      margin-top: 20px;
+      display: none;
+    }
+    #tokenDisplay {
+      background-color: #f4f4f4;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-width: 600px;
+      position: relative;
+    }
+    #copyButton {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #copyButton:hover {
+      background-color: #45a049;
+    }
+    #copyButton:active {
+      background-color: #3d8b40;
+    }
+    .copied {
+      background-color: #2196F3 !important;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Generar token reCAPTCHA v2</h2>
+
+<form id="captchaForm">
+  <!-- BO: 6LfVAC8sAAAAAK45L3nXXwmOz9EqUJSgRaQV86W1 -->
+  <div class="g-recaptcha" data-sitekey="6LfVAC8sAAAAAK45L3nXXwmOz9EqUJSgRaQV86W1"></div>
+  <br>
+  <button type="submit">Generar Token</button>
+</form>
+
+<div id="tokenContainer">
+  <h3>Token generado:</h3>
+  <div id="tokenDisplay"></div>
+  <button id="copyButton">Copiar Token</button>
+</div>
+
+<script>
+document.getElementById("captchaForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const token = grecaptcha.getResponse();
+  
+  if (token) {
+    // Mostrar el token en el div con estilo de código
+    document.getElementById("tokenDisplay").textContent = token;
+    document.getElementById("tokenContainer").style.display = "block";
+    // console.log("TOKEN:", token);
+  } else {
+    alert("Por favor completa el reCAPTCHA");
+  }
+});
+
+// Función para copiar el token al portapapeles
+document.getElementById("copyButton").addEventListener("click", function() {
+  const token = document.getElementById("tokenDisplay").textContent;
+  
+  navigator.clipboard.writeText(token).then(function() {
+    // Feedback visual al copiar
+    const button = document.getElementById("copyButton");
+    const originalText = button.textContent;
+    button.textContent = "¡Copiado!";
+    button.classList.add("copied");
+    
+    setTimeout(function() {
+      button.textContent = originalText;
+      button.classList.remove("copied");
+    }, 2000);
+  }).catch(function(err) {
+    alert("Error al copiar: " + err);
+  });
+});
+</script>
+
+</body>
+</html>
