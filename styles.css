@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+#tokenSelector {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+#tokenSelector label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+#tokenSelector input[type="radio"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+#tokenContainer {
+    margin-top: 20px;
+    display: none;
+}
+#tokenDisplay {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    word-break: break-all;
+    white-space: pre-wrap;
+    max-width: 600px;
+    position: relative;
+}
+#copyButton {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+#copyButton:hover {
+    background-color: #45a049;
+}
+#copyButton:active {
+    background-color: #3d8b40;
+}
+.copied {
+    background-color: #2196f3 !important;
+}
